@@ -10,13 +10,13 @@ import { UserService } from '../service/user.service';
 export class UserListComponent implements OnInit {
 
   usersList: User[];
+  
+  pageCount = 1;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe(users => {
-      this.usersList = users;
-    });
+   this.getUsers();
   }
 
   getOnlyUsersActive(): void {
@@ -25,4 +25,17 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  getUsers() {
+    this.userService.getUsersByLazyLoading(this.pageCount.toString()).subscribe(users => {
+      this.usersList = users;
+      this.pageCount++;
+    });
+  }
+
+  onScroll() {
+    this.userService.getUsersByLazyLoading(this.pageCount.toString()).subscribe(users => {
+      this.usersList = this.usersList.concat(users);
+      this.pageCount++;
+    });
+  }
 }

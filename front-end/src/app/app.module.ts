@@ -9,8 +9,11 @@ import { UserListComponent } from './main/user-list/user-list.component';
 import { UserCardComponent } from './main/user-card/user-card.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+
 import { HeaderComponent } from './main/header/header.component';
 
 
@@ -28,7 +31,8 @@ import { HeaderComponent } from './main/header/header.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]
