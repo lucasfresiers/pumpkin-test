@@ -24,4 +24,12 @@ export class UserService {
     .set('_limit', this.limit.toString());
     return this.http.get<User[]>(this.urlWS, {params});
   }
+
+  
+  attachPictureToUser(users: User[]) {
+    users.map(user => {
+      let r = Math.floor(Math.random() * 6) + 1;
+      user.picture = "../../assets/heads/head_" + r + ".png"
+    });
+  }
 }

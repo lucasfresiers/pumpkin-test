@@ -12,9 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 import { HeaderComponent } from './main/header/header.component';
+import { FiltersComponent } from './main/filters/filters.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { HeaderComponent } from './main/header/header.component';
     MainComponent,
     UserListComponent,
     UserCardComponent,
-    HeaderComponent
+    HeaderComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { HeaderComponent } from './main/header/header.component';
     HttpClientModule,
     MatCardModule,
     MatButtonModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

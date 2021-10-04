@@ -15,10 +15,4 @@ export class UserCardComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
-  getRandomHead(): string {
-    let r = Math.floor(Math.random() * 6) + 1;
-    return "../../../assets/heads/head_" + r + ".png"
-  }
-
 }

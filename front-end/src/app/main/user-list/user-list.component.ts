@@ -9,7 +9,7 @@ import { UserService } from '../service/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  usersList: User[];
+  usersList: User[] = [];
   
   pageCount = 1;
 
@@ -27,15 +27,13 @@ export class UserListComponent implements OnInit {
 
   getUsers() {
     this.userService.getUsersByLazyLoading(this.pageCount.toString()).subscribe(users => {
-      this.usersList = users;
+      this.userService.attachPictureToUser(users);
+      this.usersList = this.usersList.concat(users);
       this.pageCount++;
     });
   }
 
   onScroll() {
-    this.userService.getUsersByLazyLoading(this.pageCount.toString()).subscribe(users => {
-      this.usersList = this.usersList.concat(users);
-      this.pageCount++;
-    });
+    this.getUsers();
   }
 }

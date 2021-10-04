@@ -1,5 +1,5 @@
 
-<div class="container-fluid" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+<div class="container-fluid" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2" *ngFor="let user of usersList">
             <app-user-card [user]="user"></app-user-card>
