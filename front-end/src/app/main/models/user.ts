@@ -12,4 +12,5 @@ export interface User {
     phone: string;
     address: string;
     favoriteFruit: string;
+    about: string;
 }

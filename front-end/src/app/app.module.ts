@@ -9,18 +9,26 @@ import { UserListComponent } from './main/user-list/user-list.component';
 import { UserCardComponent } from './main/user-card/user-card.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import { HeaderComponent } from './main/header/header.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     UserListComponent,
-    UserCardComponent
+    UserCardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

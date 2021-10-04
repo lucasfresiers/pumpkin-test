@@ -9,11 +9,16 @@ import { User } from '../models/user';
 export class UserCardComponent implements OnInit {
 
   @Input() user: User;
-
+  
   constructor() { }
 
   ngOnInit(): void {
     
+  }
+
+  getRandomHead(): string {
+    let r = Math.floor(Math.random() * 6) + 1;
+    return "../../../assets/heads/head_" + r + ".png"
   }
 
 }

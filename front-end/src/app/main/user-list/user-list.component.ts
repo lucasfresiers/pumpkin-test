@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -8,11 +9,19 @@ import { UserService } from '../service/user.service';
 })
 export class UserListComponent implements OnInit {
 
+  usersList: User[];
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe(users => {
-      console.log(users);
+      this.usersList = users;
+    });
+  }
+
+  getOnlyUsersActive(): void {
+    this.userService.getAllUsers().subscribe(users => {
+      this.usersList = users.filter(user => user.isActive);
     });
   }
 
