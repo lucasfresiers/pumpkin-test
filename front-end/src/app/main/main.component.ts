@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FiltersComponent } from './filters/filters.component';
+import { User } from './models/user';
+import { FilterService } from './service/filter.service';
+import { UserService } from './service/user.service';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +10,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.less']
 })
 export class MainComponent implements OnInit {
+  
+  pageCount = 1;
 
-  constructor() { }
+  usersList: User[] = [];
+  usersListFiltered: User[] = [];
+
+  @ViewChild('filtersComponent') filtersComponent: FiltersComponent;
+
+  constructor(
+    private userService: UserService,
+    private filterService: FilterService
+  ) { }
 
   ngOnInit(): void {
+    this.getUsers();
   }
 
+  getUsers() {
+    this.userService.getUsersByLazyLoading(this.pageCount.toString()).subscribe(users => {
+      this.userService.attachPictureToUser(users);
+      this.usersList = this.usersList.concat(users);
+      this.usersListFiltered = this.usersList;
+      this.pageCount++;
+      if (this.filtersComponent.filtersStatus) {
+        this.applyFilters(this.filtersComponent.filters.value);
+      }
+    });
+  }
+
+  onScroll() {
+    this.getUsers();
+  }
+
+  // déclenché lors du click sur une checkBox
+  applyFilters(filters) {
+    this.usersListFiltered = this.filterService.filterByActive(this.usersList, filters.inTheStaff);
+  }
+
+  // déclenché lors du click sur le bouton
+  filterSwitched($event) {
+    if (!$event) {
+      this.usersListFiltered = this.filterService.filterDefault(this.usersList);
+    } else {
+      this.applyFilters(this.filtersComponent.filters.value)
+    }
+  }
 }

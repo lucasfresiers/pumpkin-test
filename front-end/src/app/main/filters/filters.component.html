@@ -1,13 +1,16 @@
 <div class="container-fluid">
     <h2>Liste des filtres</h2>
     <div class="row justify-content-center" [formGroup]="filters">
-        <div class="col-4">
-            <mat-checkbox formControlName="inTheStaff" [color]="'primary'">Présent dans les effectifs ? {{filters.value | json}}</mat-checkbox>
+        <div class="col-md-12 col-lg-2">
+            <button class="myButton" (click)="switchFilters()">Activer / désactiver les filtres</button>
         </div>
-        <div class="col-4">
-            Filtre 2
+        <div class="col-md-12 col-lg-3">
+            <mat-checkbox #inTheStaff formControlName="inTheStaff" [color]="'primary'">Présent dans les effectifs ?</mat-checkbox>
         </div>
-        <div class="col-4">
+        <div class="col-md-12 col-lg-3">
+            <mat-checkbox #inTheMoney formControlName="inTheMoney" [color]="'primary'">Seulement les salaires > à 2000€ / mois</mat-checkbox>
+        </div>
+        <div class="col-md-12 col-lg-4">
             Filtre 3
         </div>
     </div>

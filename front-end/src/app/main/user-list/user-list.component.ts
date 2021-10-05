@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../service/user.service';
 
@@ -9,31 +9,15 @@ import { UserService } from '../service/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  usersList: User[] = [];
+  @Input() usersList: User[];
+
+  @Output() scrolled = new EventEmitter<any>();
   
-  pageCount = 1;
+  constructor() { }
 
-  constructor(private userService: UserService) { }
-
-  ngOnInit(): void {
-   this.getUsers();
-  }
-
-  getOnlyUsersActive(): void {
-    this.userService.getAllUsers().subscribe(users => {
-      this.usersList = users.filter(user => user.isActive);
-    });
-  }
-
-  getUsers() {
-    this.userService.getUsersByLazyLoading(this.pageCount.toString()).subscribe(users => {
-      this.userService.attachPictureToUser(users);
-      this.usersList = this.usersList.concat(users);
-      this.pageCount++;
-    });
-  }
+  ngOnInit(): void { }
 
   onScroll() {
-    this.getUsers();
+    this.scrolled.emit();
   }
 }

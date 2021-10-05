@@ -16,6 +16,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule} from '@angular/material/icon';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -38,7 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InfiniteScrollModule,
     MatCheckboxModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
