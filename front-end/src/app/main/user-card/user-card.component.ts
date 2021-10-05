@@ -9,10 +9,16 @@ import { User } from '../models/user';
 export class UserCardComponent implements OnInit {
 
   @Input() user: User;
+
+  displayDetails: boolean = false;
   
   constructor() { }
 
   ngOnInit(): void {
     
+  }
+
+  goToDetails() {
+    this.displayDetails = !this.displayDetails;
   }
 }
