@@ -20,6 +20,10 @@ export class FilterService {
     }
   }
 
+  filterByName(users: User[], name: string) {
+    return users.filter(user => user.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
+  }
+
   filterDefault(users: User[]) {
     return users.filter(() => true);
   }

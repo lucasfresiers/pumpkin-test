@@ -1,3 +1,3 @@
 <app-header></app-header>
-<app-filters #filtersComponent (filterSwitched)="filterSwitched($event)" (filterChecked)="applyFilters($event)"></app-filters>
+<app-filters #filtersComponent (filterNameInput)="filterName($event)" (filterSwitched)="filterSwitched($event)" (filterChecked)="applyFilters($event)"></app-filters>
 <app-user-list [usersList]="usersListFiltered" (scrolled)="onScroll()"></app-user-list>

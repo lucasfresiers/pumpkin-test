@@ -59,4 +59,8 @@ export class MainComponent implements OnInit {
       this.applyFilters(this.filtersComponent.filters.value)
     }
   }
+
+  filterName(name) {
+    this.usersListFiltered = this.filterService.filterByName(this.usersList, name);
+  }
 }

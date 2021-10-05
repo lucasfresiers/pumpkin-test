@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 
@@ -12,6 +12,7 @@ export class FiltersComponent implements OnInit {
 
   @Output() filterChecked = new EventEmitter<FormGroup>();
   @Output() filterSwitched = new EventEmitter<boolean>();
+  @Output() filterNameInput = new EventEmitter<string>();
 
   @ViewChild('inTheStaff') inTheStaffCheckBox: MatCheckbox;
   @ViewChild('inTheMoney') inTheMoneyCheckBox: MatCheckbox;
@@ -19,10 +20,12 @@ export class FiltersComponent implements OnInit {
   filters: FormGroup;
   filtersStatus: boolean = false;
 
+  filterName = new FormControl('');
+
   constructor(fb: FormBuilder) { 
     this.filters = fb.group({
       inTheStaff: new FormControl({value: false, disabled: true}),
-      inTheMoney: new FormControl({value: false, disabled: true})
+      inTheMoney: new FormControl({value: false, disabled: true}),
     });
   }
 
@@ -34,6 +37,9 @@ export class FiltersComponent implements OnInit {
     this.filters.valueChanges.subscribe((formGroup: FormGroup) => {
       this.filterChecked.emit(formGroup);
     });
+    this.filterName.valueChanges.subscribe(value => {
+      this.filterNameInput.emit(value);
+    })
   }
 
   switchFilters() {
