@@ -1,7 +1,7 @@
 export interface User {
     id: number;
     isActive: boolean;
-    balance: number;
+    income: number;
     picture: string;
     age: number;
     eyeColor: string;

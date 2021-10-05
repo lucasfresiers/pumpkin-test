@@ -45,7 +45,10 @@ export class MainComponent implements OnInit {
 
   // déclenché lors du click sur une checkBox
   applyFilters(filters) {
-    this.usersListFiltered = this.filterService.filterByActive(this.usersList, filters.inTheStaff);
+    let res = [];
+    res = this.filterService.filterByActive(this.usersList, filters.inTheStaff);
+    res = res.concat(this.filterService.filterByIncome(this.usersList, filters.inTheMoney));
+    this.usersListFiltered = res;
   }
 
   // déclenché lors du click sur le bouton
