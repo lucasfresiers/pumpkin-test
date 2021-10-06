@@ -11,14 +11,17 @@ export class UserCardComponent implements OnInit {
   @Input() user: User;
 
   displayDetails: boolean = false;
+  launchSpinner: boolean = false;
   
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
-  goToDetails() {
+  async goToDetails() {
+    this.launchSpinner = true;
+    await new Promise(f => setTimeout(f, 1000));
+    this.launchSpinner = false;
     this.displayDetails = !this.displayDetails;
   }
 }
