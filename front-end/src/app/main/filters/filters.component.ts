@@ -10,42 +10,33 @@ import { MatCheckbox } from '@angular/material/checkbox';
 
 export class FiltersComponent implements OnInit {
 
-  @Output() filterChecked = new EventEmitter<FormGroup>();
-  @Output() filterSwitched = new EventEmitter<boolean>();
+  @Output() filterinTheStaffChecked = new EventEmitter<boolean>();
   @Output() filterNameInput = new EventEmitter<string>();
+  @Output() filterIncomeHasChanged = new EventEmitter<number>();
 
   @ViewChild('inTheStaff') inTheStaffCheckBox: MatCheckbox;
-  @ViewChild('inTheMoney') inTheMoneyCheckBox: MatCheckbox;
-
-  filters: FormGroup;
-  filtersStatus: boolean = false;
 
   filterName = new FormControl('');
+  filterInTheStaff = new FormControl(true);
 
-  constructor(fb: FormBuilder) { 
-    this.filters = fb.group({
-      inTheStaff: new FormControl({value: false, disabled: true}),
-      inTheMoney: new FormControl({value: false, disabled: true}),
-    });
-  }
+  value = 2000;
+
+  constructor() {}
 
   ngOnInit(): void {
     this.listenToFilters();
   }
 
   listenToFilters() {
-    this.filters.valueChanges.subscribe((formGroup: FormGroup) => {
-      this.filterChecked.emit(formGroup);
+    this.filterInTheStaff.valueChanges.subscribe((value: boolean)=> {
+      this.filterinTheStaffChecked.emit(value);
     });
-    this.filterName.valueChanges.subscribe(value => {
+    this.filterName.valueChanges.subscribe((value: string) => {
       this.filterNameInput.emit(value);
     })
   }
 
-  switchFilters() {
-    this.filtersStatus = !this.filtersStatus;
-    this.inTheStaffCheckBox.disabled = !this.inTheStaffCheckBox.disabled;
-    this.inTheMoneyCheckBox.disabled = !this.inTheMoneyCheckBox.disabled;
-    this.filterSwitched.emit(this.filtersStatus);
+  incomeHasChanged($event) {
+    this.filterIncomeHasChanged.emit($event.value);
   }
 }

@@ -18,6 +18,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -43,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -33,9 +33,6 @@ export class MainComponent implements OnInit {
       this.usersList = this.usersList.concat(users);
       this.usersListFiltered = this.usersList;
       this.pageCount++;
-      if (this.filtersComponent.filtersStatus) {
-        this.applyFilters(this.filtersComponent.filters.value);
-      }
     });
   }
 
@@ -43,24 +40,19 @@ export class MainComponent implements OnInit {
     this.getUsers();
   }
 
-  // déclenché lors du click sur une checkBox
-  applyFilters(filters) {
-    let res = [];
-    res = this.filterService.filterByActive(this.usersList, filters.inTheStaff);
-    res = res.concat(this.filterService.filterByIncome(this.usersList, filters.inTheMoney));
-    this.usersListFiltered = res;
-  }
-
-  // déclenché lors du click sur le bouton
-  filterSwitched($event) {
-    if (!$event) {
-      this.usersListFiltered = this.filterService.filterDefault(this.usersList);
+  filterinTheStaffChecked(value) {
+    if (value) {
+      this.usersListFiltered = this.filterService.filterByActive(this.usersList, value);
     } else {
-      this.applyFilters(this.filtersComponent.filters.value)
+      this.usersListFiltered = this.filterService.filterDefault(this.usersList);
     }
   }
 
   filterName(name) {
     this.usersListFiltered = this.filterService.filterByName(this.usersList, name);
+  }
+
+  filterIncome(income) {
+    this.usersListFiltered = this.filterService.filterByIncome(this.usersList,income);
   }
 }
