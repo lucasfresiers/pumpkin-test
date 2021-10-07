@@ -13,7 +13,15 @@ export class FilterService {
   }
 
   filterByIncome(users: User[], income: number) {
-    return users.filter(user => user.income > income);
+    return users
+            .filter(user => user.income > income)
+            .sort((a,b) => a.income - b.income);;
+  }
+  
+  filterByIncomeAndByActive(users: User[], income: number) {
+    return users
+            .filter(user => user.isActive && user.income > income)
+            .sort((a,b) => a.income - b.income);
   }
 
   filterByName(users: User[], name: string) {

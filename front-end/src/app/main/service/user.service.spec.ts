@@ -1,5 +1,4 @@
 let httpClientSpy: { get: jasmine.Spy };
-import { TestBed, async, inject } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { User } from '../models/user';
 import { UserService } from './user.service';

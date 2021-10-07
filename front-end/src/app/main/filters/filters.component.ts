@@ -2,12 +2,13 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 
+const valueOfIncomeToStart: number = 0;
+
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.less']
 })
-
 export class FiltersComponent implements OnInit {
 
   @Output() filterinTheStaffChecked = new EventEmitter<boolean>();
@@ -17,9 +18,9 @@ export class FiltersComponent implements OnInit {
   @ViewChild('inTheStaff') inTheStaffCheckBox: MatCheckbox;
 
   filterName = new FormControl('');
-  filterInTheStaff = new FormControl(true);
+  filterInTheStaff = new FormControl(false);
 
-  value = 2000;
+  value: number = valueOfIncomeToStart;
 
   constructor() {}
 
@@ -38,5 +39,11 @@ export class FiltersComponent implements OnInit {
 
   incomeHasChanged($event) {
     this.filterIncomeHasChanged.emit($event.value);
+  }
+
+  resetAllFilters() {
+    this.filterName.setValue('');
+    this.filterInTheStaff.setValue(false);
+    this.value = valueOfIncomeToStart;
   }
 }

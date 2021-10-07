@@ -33,6 +33,7 @@ export class MainComponent implements OnInit {
       this.usersList = this.usersList.concat(users);
       this.usersListFiltered = this.usersList;
       this.pageCount++;
+      this.filtersComponent.resetAllFilters();
     });
   }
 
@@ -42,9 +43,9 @@ export class MainComponent implements OnInit {
 
   filterinTheStaffChecked(value) {
     if (value) {
-      this.usersListFiltered = this.filterService.filterByActive(this.usersList, value);
+      this.usersListFiltered = this.filterService.filterByIncomeAndByActive(this.usersList, this.filtersComponent.value);
     } else {
-      this.usersListFiltered = this.filterService.filterDefault(this.usersList);
+      this.usersListFiltered = this.filterService.filterByIncome(this.usersList, this.filtersComponent.value);
     }
   }
 
@@ -53,6 +54,10 @@ export class MainComponent implements OnInit {
   }
 
   filterIncome(income) {
-    this.usersListFiltered = this.filterService.filterByIncome(this.usersList,income);
+    if (this.filtersComponent.filterInTheStaff.value) {
+      this.usersListFiltered = this.filterService.filterByIncomeAndByActive(this.usersList, income);
+    } else {
+      this.usersListFiltered = this.filterService.filterByIncome(this.usersList, income);
+    }
   }
 }
