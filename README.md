@@ -7,8 +7,8 @@ Deux tests unitaires basiques front-end ont été implémentés.
 
 ## Stack technique utilisée :
 
-Angular 9
-Bootstrap 4.3.1
-Angular Material 9.2.4
-Json GENERATOR
-Json-server
+Angular 9.
+Bootstrap 4.3.1.
+Angular Material 9.2.4.
+Json GENERATOR.
+Json-server.
